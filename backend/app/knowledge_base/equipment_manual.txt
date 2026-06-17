@@ -1,0 +1,65 @@
+EQUIPMENT MANUAL — PUMPS, VALVES, AND FILTERS
+
+==================================================
+PUMP P101 — CENTRIFUGAL PUMP
+==================================================
+Model: AcmeCentriflow 4500
+Type: Centrifugal, single-stage
+Rated flow: 250 m3/h
+Rated head: 45 m
+Inlet/Outlet: DN150 / DN125 flanged
+Motor: 75 kW, 3-phase, 415 V
+Bearing type: Deep groove ball bearing, SKF 6310
+Lubrication: Mineral oil ISO VG 68, change every 4000 hours
+
+Operating parameters:
+- Maximum suction pressure: 3.5 bar
+- Discharge pressure (normal): 6.2 bar
+- Operating temperature: 5–80 C
+- Vibration limit (steady state): 4.5 mm/s RMS
+
+Common faults:
+- Vibration above 4.5 mm/s typically indicates worn bearings or impeller
+  imbalance. Replace bearings and check impeller balance.
+- Cavitation noise indicates low suction head; verify upstream strainer.
+- Leakage at shaft seal: replace mechanical seal kit MSK-150.
+
+==================================================
+VALVE V203 — PRESSURE CONTROL VALVE
+==================================================
+Model: FlowSafe PRV-203
+Type: Pilot-operated pressure relief valve
+Set pressure: 8.0 bar
+Reseat pressure: 7.2 bar
+Body material: Carbon steel ASTM A216 WCB
+Trim material: Stainless steel 316
+Connection: 2" 150# flanged inlet, 3" 150# flanged outlet
+
+Operating pressure: rated up to 10.0 bar working, 15.0 bar test.
+The valve must reseat fully within 0.5 bar of its set pressure.
+
+Common faults:
+- Chatter at set point: clean the pilot orifice and check for debris.
+- Failure to reseat: replace the seat insert kit V203-SI.
+- External leakage at bonnet: replace bonnet gasket V203-BG-001.
+
+==================================================
+FILTER F22 — AIR FILTER
+==================================================
+Model: AirPure F22
+Type: Pleated synthetic media, MERV 13
+Dimensions: 600 x 600 x 100 mm
+Recommended differential pressure (clean): 80 Pa
+Replacement threshold: 250 Pa or 6 months, whichever comes first.
+
+Common faults:
+- High pressure drop without dust loading: media is wet, replace immediately.
+- Bypass leakage: re-seat the filter frame, check for warped gasket.
+
+Spare parts catalogue:
+- Bearing SKF 6310 (for P101)
+- Mechanical seal kit MSK-150 (for P101)
+- Pilot orifice cleaning kit V203-PCK
+- Seat insert kit V203-SI
+- Bonnet gasket V203-BG-001
+- Filter media cartridge F22-MC-13

@@ -1,0 +1,61 @@
+MAINTENANCE PROCEDURES
+
+==================================================
+PUMP P101 — BEARING REPLACEMENT
+==================================================
+Frequency: every 4000 operating hours or on vibration alarm.
+Tools: bearing puller, torque wrench (range 20-100 Nm), oil pan.
+
+Steps:
+1. Lock out / tag out the pump motor breaker.
+2. Drain the lubrication oil into the pan.
+3. Remove the coupling guard and disconnect the coupling.
+4. Remove the bearing housing bolts (8 x M12 at 60 Nm).
+5. Pull out the rotor assembly using the bearing puller.
+6. Replace SKF 6310 bearings on both drive and non-drive ends.
+7. Refill with ISO VG 68 oil to the sight glass mid-mark.
+8. Recommission and verify vibration is below 4.5 mm/s RMS.
+
+Last serviced (P101): 2026-04-12 — bearings replaced, oil changed,
+seal inspected (OK). Vibration after service: 1.9 mm/s RMS.
+
+==================================================
+VALVE V203 — SEAT INSERT REPLACEMENT
+==================================================
+Frequency: on failure to reseat, or every 24 months.
+Tools: torque wrench, valve seat extractor, lapping compound.
+
+Steps:
+1. Isolate the line and depressurize.
+2. Remove the bonnet bolts (6 x M16 at 130 Nm).
+3. Lift the bonnet and pilot assembly clear.
+4. Extract the worn seat insert; clean the seat pocket.
+5. Install seat insert kit V203-SI and lap to 0.8 micron finish.
+6. Reassemble with a new bonnet gasket V203-BG-001.
+7. Hydrotest at 15.0 bar, hold for 10 minutes.
+8. Verify set pressure 8.0 bar +/- 0.2 bar on a test rig.
+
+Last serviced (V203): 2026-02-03 — seat insert replaced, hydrotest passed.
+
+==================================================
+FILTER F22 — MEDIA REPLACEMENT
+==================================================
+Frequency: when differential pressure reaches 250 Pa, or every 6 months.
+
+Steps:
+1. Stop the air handling unit.
+2. Open the filter access panel.
+3. Slide out the spent filter cartridge F22-MC-13.
+4. Wipe the frame; verify gasket integrity.
+5. Insert the new cartridge with the airflow arrow oriented correctly.
+6. Close the panel and verify pressure drop is below 100 Pa at full flow.
+
+Last serviced (F22): 2026-05-20 — media replaced, gasket inspected (OK).
+
+==================================================
+GENERAL SAFETY
+==================================================
+- Always perform lock out / tag out on rotating equipment.
+- Wear appropriate PPE: safety glasses, gloves, hearing protection.
+- Two-person rule when working on energized systems.
+- Document every action in the work order before closing it.

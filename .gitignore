@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Database / vectors
+*.db
+backend/voicepro.db
+backend/app/vector_store/
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+
+# Tooling
+.claude/
+.claude-flow/
+.swarm/
+.hive-mind/

@@ -1,0 +1,41 @@
+EQUIPMENT SPECIFICATIONS — QUICK REFERENCE
+
+PUMP P101
+- Type: Centrifugal, single-stage
+- Flow: 250 m3/h
+- Head: 45 m
+- Power: 75 kW
+- Voltage: 415 V, 3-phase, 50 Hz
+- Bearings: SKF 6310
+- Vibration limit: 4.5 mm/s RMS
+- Operating temperature: 5–80 C
+- Location: Pump House A, Bay 2
+
+VALVE V203
+- Type: Pilot-operated pressure relief valve
+- Set pressure: 8.0 bar
+- Reseat pressure: 7.2 bar
+- Max working pressure: 10.0 bar
+- Test pressure: 15.0 bar
+- Body: Carbon steel ASTM A216 WCB
+- Trim: Stainless steel 316
+- Connection: 2" inlet x 3" outlet, 150# flanged
+- Location: Steam Header, Level 3
+
+FILTER F22
+- Type: Pleated synthetic media, MERV 13
+- Dimensions: 600 x 600 x 100 mm
+- Clean DP: 80 Pa
+- Replace threshold: 250 Pa or 6 months
+- Recommended cartridge: F22-MC-13
+- Location: AHU-2, Roof Mechanical Room
+
+SUPPORTED SEVERITY LEVELS
+- Low: cosmetic, no operational impact, schedule at next routine.
+- Medium: degraded performance, schedule within 7 days.
+- High: imminent failure risk, schedule within 24 hours.
+- Critical: equipment must be taken offline immediately.
+
+CONTACT
+- Maintenance supervisor: ext 4501
+- After-hours on-call: ext 4502
