@@ -22,57 +22,49 @@ export default {
         ],
       },
       colors: {
-        brand: {
-          50: "#fafafa",
-          100: "#f4f4f5",
-          200: "#e4e4e7",
-          300: "#d4d4d8",
-          400: "#a1a1aa",
-          500: "#71717a",
-          600: "#52525b",
-          700: "#3f3f46",
-          800: "#27272a",
-          900: "#18181b",
+        // Industrial minimal palette — six tokens only.
+        canvas: "#09090B",
+        surface: "#111113",
+        hairline: "#27272A",
+        primary: {
+          DEFAULT: "#06B6D4", // cyan-500
+          hover: "#22D3EE", // cyan-400
+          ring: "rgba(6,182,212,0.35)",
         },
+        // Aliases retained from prior commits so component code keeps working.
         accent: {
-          300: "#67e8f9",
-          400: "#22d3ee",
-          500: "#06b6d4",
-          600: "#0891b2",
+          300: "#67E8F9",
+          400: "#22D3EE",
+          500: "#06B6D4",
+          600: "#0891B2",
         },
       },
+      maxWidth: {
+        page: "1400px",
+      },
       borderRadius: {
-        xl: "0.875rem",
-        "2xl": "1.125rem",
+        "3xl": "1.5rem", // 24px — cards
       },
       keyframes: {
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(6px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        "rec-ring": {
+          "0%": { transform: "scale(1)", opacity: "0.35" },
+          "100%": { transform: "scale(1.5)", opacity: "0" },
         },
         "subtle-pulse": {
           "0%, 100%": { opacity: "0.55" },
           "50%": { opacity: "1" },
         },
-        "rec-ring": {
-          "0%": { transform: "scale(1)", opacity: "0.35" },
-          "100%": { transform: "scale(1.5)", opacity: "0" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
       },
       animation: {
-        "fade-in": "fade-in 0.3s ease-out both",
-        "fade-in-up": "fade-in-up 0.3s ease-out both",
-        "subtle-pulse": "subtle-pulse 2.4s ease-in-out infinite",
+        "fade-in": "fade-in 150ms ease-out both",
+        "fade-in-up": "fade-in 150ms ease-out both",
         "rec-ring": "rec-ring 1.6s ease-out infinite",
-        shimmer: "shimmer 2s linear infinite",
+        "subtle-pulse": "subtle-pulse 2.4s ease-in-out infinite",
+        shimmer: "fade-in 150ms ease-out both",
       },
     },
   },

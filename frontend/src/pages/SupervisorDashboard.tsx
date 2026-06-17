@@ -17,8 +17,8 @@ export function SupervisorDashboard() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-24 text-zinc-500 text-[13px]">
-        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+      <div className="flex items-center justify-center py-24 text-zinc-500 text-sm">
+        <Loader2 strokeWidth={1.75} className="h-4 w-4 animate-spin mr-2" />
         Loading dashboard…
       </div>
     );
@@ -26,14 +26,14 @@ export function SupervisorDashboard() {
 
   if (error || !data) {
     return (
-      <div className="text-[12px] text-rose-300 border border-rose-500/30 bg-rose-500/5 px-3 py-2 rounded-md">
+      <div className="text-[12px] text-red-300 border border-red-500/30 bg-red-500/5 px-3 py-2 rounded-md">
         Could not load dashboard data. Is the backend running?
       </div>
     );
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader
         onRefresh={() => refetch()}
         refreshing={isFetching}
@@ -46,12 +46,12 @@ export function SupervisorDashboard() {
         criticalAlerts={data.critical_alerts}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <SeverityPie data={data.severity_breakdown} />
         <WorkOrderStatusBar data={data.work_order_status} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <RecentActivity transcripts={data.recent_transcripts} />
         <AlertsPanel inspections={data.recent_inspections} />
       </div>
@@ -73,20 +73,20 @@ function PageHeader({
     : "—";
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <div>
-        <div className="text-[10px] uppercase tracking-[0.18em] font-medium text-zinc-500 mb-2">
+        <div className="text-xs uppercase tracking-wide font-medium text-zinc-500 mb-3">
           Supervisor
         </div>
-        <h1 className="text-[28px] font-semibold tracking-tight text-zinc-50">
+        <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
           Field operations, at a glance.
         </h1>
-        <p className="text-[13px] text-zinc-500 mt-1.5 max-w-xl leading-relaxed">
+        <p className="text-sm text-zinc-400 mt-3 max-w-xl leading-relaxed">
           KPI cards, severity distribution, and live activity. Auto-refresh
           every 15s.
         </p>
       </div>
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex items-center gap-3 shrink-0">
         <span className="text-[10px] font-mono text-zinc-600">
           updated {stamp}
         </span>
@@ -97,9 +97,9 @@ function PageHeader({
           disabled={refreshing}
         >
           {refreshing ? (
-            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            <Loader2 strokeWidth={1.75} className="h-3.5 w-3.5 animate-spin" />
           ) : (
-            <RefreshCw className="h-3.5 w-3.5" />
+            <RefreshCw strokeWidth={1.75} className="h-3.5 w-3.5" />
           )}
           Refresh
         </Button>

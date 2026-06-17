@@ -80,14 +80,14 @@ export function QueryPanel() {
     <Card>
       <CardHeader>
         <div className="flex items-center gap-2">
-          <Sparkles className="h-3.5 w-3.5 text-accent-400" />
+          <Sparkles className="h-4 w-4 text-primary" strokeWidth={1.75} />
           <CardTitle>Ask About Equipment</CardTitle>
         </div>
         <CardDescription>
           RAG over manuals, procedures, and specs.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-4">
         <form
           className="flex gap-2"
           onSubmit={(e) => {
@@ -102,9 +102,9 @@ export function QueryPanel() {
           />
           <Button type="submit" disabled={loading || !question.trim()}>
             {loading ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              <Loader2 strokeWidth={1.75} className="h-3.5 w-3.5 animate-spin" />
             ) : (
-              <Send className="h-3.5 w-3.5" />
+              <Send strokeWidth={1.75} className="h-3.5 w-3.5" />
             )}
             Ask
           </Button>
@@ -119,7 +119,7 @@ export function QueryPanel() {
                 setQuestion(q);
                 ask(q);
               }}
-              className="cursor-pointer text-[11px] px-2 py-0.5 rounded-md bg-zinc-900 text-zinc-400 border border-zinc-800 hover:bg-zinc-800 hover:text-zinc-200 transition-colors"
+              className="cursor-pointer text-[11px] px-2 py-1 rounded-md bg-canvas text-zinc-400 border border-hairline hover:bg-surface hover:text-zinc-200 transition-colors"
             >
               {q}
             </button>
@@ -127,15 +127,15 @@ export function QueryPanel() {
         </div>
 
         {error && (
-          <div className="text-[12px] border border-rose-500/30 bg-rose-500/5 text-rose-300 px-3 py-2 rounded-md">
+          <div className="text-[12px] border border-red-500/30 bg-red-500/5 text-red-300 px-3 py-2 rounded-md">
             {error}
           </div>
         )}
 
         {result && (
-          <div className="rounded-md border border-zinc-800 bg-zinc-950 p-3.5 space-y-2.5 animate-fade-in-up">
+          <div className="rounded-xl border border-hairline bg-canvas p-4 space-y-3 animate-fade-in">
             <div className="flex items-center justify-between gap-2">
-              <div className="text-[10px] uppercase tracking-wide text-zinc-500 font-medium truncate">
+              <div className="text-xs uppercase tracking-wide text-zinc-500 font-medium truncate">
                 {result.question}
               </div>
               {SUPPORTS_TTS && (
@@ -149,30 +149,30 @@ export function QueryPanel() {
                 >
                   {speaking ? (
                     <>
-                      <VolumeX className="h-3 w-3" />
+                      <VolumeX strokeWidth={1.75} className="h-3 w-3" />
                       stop
                     </>
                   ) : (
                     <>
-                      <Volume2 className="h-3 w-3 text-accent-400" />
+                      <Volume2 strokeWidth={1.75} className="h-3 w-3 text-primary" />
                       play
                     </>
                   )}
                 </button>
               )}
             </div>
-            <p className="text-zinc-100 text-[13px] leading-relaxed">
+            <p className="text-zinc-100 text-sm leading-relaxed">
               {result.answer}
             </p>
             {result.sources.length > 0 && (
-              <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-zinc-900">
+              <div className="flex items-center gap-1.5 flex-wrap pt-3 border-t border-hairline/60">
                 <span className="text-[10px] text-zinc-600 mr-0.5 font-mono">
                   sources
                 </span>
                 {result.sources.map((s) => (
                   <span
                     key={s}
-                    className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-900 text-zinc-400 border border-zinc-800"
+                    className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface text-zinc-400 border border-hairline"
                   >
                     {s}
                   </span>

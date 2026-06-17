@@ -3,25 +3,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-[13px] font-medium transition-colors cursor-pointer ring-offset-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400/60 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-[13px] font-medium transition-colors cursor-pointer ring-offset-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default:
-          "bg-zinc-100 text-black hover:bg-white",
+        default: "bg-primary text-white hover:bg-primary-hover",
         outline:
-          "border border-zinc-800 bg-transparent text-zinc-200 hover:bg-zinc-900 hover:border-zinc-700",
-        ghost: "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100",
+          "border border-hairline bg-transparent text-zinc-200 hover:bg-surface hover:border-zinc-700",
+        ghost: "text-zinc-400 hover:bg-surface hover:text-zinc-50",
         danger:
-          "bg-rose-500/90 text-white hover:bg-rose-500",
-        success: "bg-emerald-500/90 text-black hover:bg-emerald-500",
+          "border border-red-500/50 bg-transparent text-red-400 hover:bg-red-500/10 hover:border-red-500",
+        success: "bg-emerald-500 text-black font-semibold hover:bg-emerald-400",
         subtle:
-          "bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 border border-zinc-800",
+          "bg-surface text-zinc-300 hover:text-zinc-50 border border-hairline",
       },
       size: {
         default: "h-9 px-3.5",
-        sm: "h-7 px-2.5 text-[12px]",
-        lg: "h-11 px-5 text-sm",
+        sm: "h-8 px-3 text-[12px]",
+        lg: "h-10 px-4 text-sm",
         icon: "h-9 w-9",
       },
     },

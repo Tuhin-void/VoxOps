@@ -18,7 +18,7 @@ const GITHUB_URL = "https://github.com/Tuhin-void/VoxOps";
 
 export function LandingPage() {
   return (
-    <div className="space-y-24 py-6">
+    <div className="space-y-28 py-8">
       <Hero />
       <Features />
       <HowItWorks />
@@ -32,36 +32,36 @@ function Hero() {
   return (
     <section className="relative">
       <div className="max-w-3xl">
-        <div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-medium text-accent-300 mb-5">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-400 animate-subtle-pulse" />
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wide font-medium text-primary mb-6">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary animate-subtle-pulse" />
           Voice-first · field intelligence
         </div>
-        <h1 className="text-[44px] sm:text-[60px] font-semibold tracking-[-0.02em] text-zinc-50 leading-[1.05]">
+        <h1 className="text-5xl sm:text-7xl font-semibold tracking-[-0.02em] text-zinc-50 leading-[1.05]">
           VoxOps
         </h1>
-        <p className="text-[20px] sm:text-[22px] font-medium text-zinc-300 mt-3 leading-snug max-w-2xl">
+        <p className="text-xl sm:text-2xl font-medium text-zinc-300 mt-4 leading-snug max-w-2xl">
           Voice-First AI Assistant for Field Workers.
         </p>
-        <p className="text-[15px] text-zinc-500 mt-4 leading-relaxed max-w-xl">
+        <p className="text-base text-zinc-500 mt-5 leading-relaxed max-w-xl">
           Hands-free inspections, equipment queries, and work-order management
           powered by AI. Speak naturally — VoxOps transcribes, extracts
           structured records, answers questions from your manuals, and keeps
           working when the signal drops.
         </p>
-        <div className="mt-7 flex flex-wrap items-center gap-3">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
             to="/worker"
-            className="inline-flex items-center gap-1.5 bg-zinc-100 text-black px-4 py-2 rounded-md text-[13px] font-medium hover:bg-white transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 bg-primary text-white px-4 py-2 rounded-md text-[13px] font-medium hover:bg-primary-hover transition-colors cursor-pointer"
           >
-            <Mic className="h-3.5 w-3.5" />
+            <Mic strokeWidth={1.75} className="h-3.5 w-3.5" />
             Launch Demo
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight strokeWidth={1.75} className="h-3.5 w-3.5" />
           </Link>
           <Link
             to="/dashboard"
-            className="inline-flex items-center gap-1.5 border border-zinc-800 text-zinc-200 px-4 py-2 rounded-md text-[13px] font-medium hover:bg-zinc-900 hover:border-zinc-700 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 border border-hairline text-zinc-200 px-4 py-2 rounded-md text-[13px] font-medium hover:bg-surface hover:border-zinc-700 transition-colors cursor-pointer"
           >
-            <LayoutDashboard className="h-3.5 w-3.5" />
+            <LayoutDashboard strokeWidth={1.75} className="h-3.5 w-3.5" />
             View Dashboard
           </Link>
           <a
@@ -70,7 +70,7 @@ function Hero() {
             rel="noreferrer noopener"
             className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-200 px-2 py-2 transition-colors cursor-pointer"
           >
-            <Github className="h-3.5 w-3.5" />
+            <Github strokeWidth={1.75} className="h-3.5 w-3.5" />
             Source
           </a>
         </div>
@@ -123,16 +123,16 @@ function Features() {
     <section>
       <SectionEyebrow>Features</SectionEyebrow>
       <SectionTitle>Everything a field tech needs. Nothing else.</SectionTitle>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
         {items.map((it) => (
-          <div key={it.title} className="surface rounded-xl p-5">
-            <div className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-zinc-900 border border-zinc-800 mb-3">
-              <it.icon className="h-4 w-4 text-zinc-300" />
+          <div key={it.title} className="surface rounded-3xl p-6">
+            <div className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-canvas border border-hairline mb-4">
+              <it.icon strokeWidth={1.75} className="h-4 w-4 text-zinc-300" />
             </div>
-            <h3 className="text-[14px] font-semibold text-zinc-100">
+            <h3 className="text-base font-semibold text-zinc-50">
               {it.title}
             </h3>
-            <p className="text-[12px] text-zinc-500 leading-relaxed mt-1">
+            <p className="text-sm text-zinc-400 leading-relaxed mt-2">
               {it.body}
             </p>
           </div>
@@ -174,16 +174,16 @@ function HowItWorks() {
     <section>
       <SectionEyebrow>How it works</SectionEyebrow>
       <SectionTitle>Four steps from voice to record.</SectionTitle>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
         {steps.map((s) => (
-          <div key={s.n} className="surface rounded-xl p-5">
-            <div className="font-mono text-[10px] text-accent-400 mb-2">
+          <div key={s.n} className="surface rounded-3xl p-6">
+            <div className="font-mono text-[10px] text-primary mb-3">
               {s.n}
             </div>
-            <h3 className="text-[14px] font-semibold text-zinc-100">
+            <h3 className="text-base font-semibold text-zinc-50">
               {s.title}
             </h3>
-            <p className="text-[12px] text-zinc-500 leading-relaxed mt-1">
+            <p className="text-sm text-zinc-400 leading-relaxed mt-2">
               {s.body}
             </p>
           </div>
@@ -208,7 +208,7 @@ function Architecture() {
       <SectionEyebrow>Architecture</SectionEyebrow>
       <SectionTitle>One backend, one frontend, one LLM provider.</SectionTitle>
 
-      <div className="surface rounded-xl p-6 mt-8 overflow-x-auto">
+      <div className="surface rounded-3xl p-7 mt-10 overflow-x-auto">
         <pre className="font-mono text-[11px] text-zinc-400 leading-relaxed whitespace-pre min-w-[640px]">
 {`        ┌─────────────────────────────┐
         │  Browser (React + Vite)     │
@@ -238,13 +238,13 @@ function Architecture() {
         </pre>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-6">
         {stack.map((s) => (
           <div
             key={s.label}
             className="surface rounded-md px-3 py-2.5 flex items-center gap-2"
           >
-            <s.icon className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
+            <s.icon strokeWidth={1.75} className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
             <div className="min-w-0">
               <div className="text-[10px] uppercase tracking-wide text-zinc-600">
                 {s.group}
@@ -262,27 +262,27 @@ function Architecture() {
 
 function Footer() {
   return (
-    <section className="surface rounded-xl p-6">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <section className="surface rounded-3xl p-7">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-zinc-100 text-black">
-              <Mic className="h-3 w-3" strokeWidth={2.5} />
+          <div className="flex items-center gap-2 mb-3">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-zinc-50 text-black">
+              <Mic className="h-3 w-3" strokeWidth={2.25} />
             </span>
-            <span className="text-[14px] font-semibold text-zinc-100">
+            <span className="text-base font-semibold text-zinc-50">
               VoxOps
             </span>
           </div>
-          <p className="text-[12px] text-zinc-500 leading-relaxed">
+          <p className="text-sm text-zinc-400 leading-relaxed">
             Voice-first field intelligence. Built as an end-of-semester project
             for AI Systems.
           </p>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-zinc-500 font-medium mb-2">
+          <div className="text-xs uppercase tracking-wide text-zinc-500 font-medium mb-3">
             Tech stack
           </div>
-          <ul className="text-[12px] text-zinc-300 space-y-1 font-mono">
+          <ul className="text-[12px] text-zinc-300 space-y-1.5 font-mono">
             <li>React + Vite + TypeScript</li>
             <li>Tailwind + Recharts</li>
             <li>FastAPI + SQLite + ChromaDB</li>
@@ -290,24 +290,24 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-zinc-500 font-medium mb-2">
+          <div className="text-xs uppercase tracking-wide text-zinc-500 font-medium mb-3">
             Links
           </div>
-          <ul className="text-[12px] space-y-1">
+          <ul className="text-sm space-y-1.5">
             <li>
               <a
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-zinc-50 cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-zinc-50 cursor-pointer transition-colors"
               >
-                <Github className="h-3 w-3" /> GitHub
+                <Github strokeWidth={1.75} className="h-3 w-3" /> GitHub
               </a>
             </li>
             <li>
               <Link
                 to="/getting-started"
-                className="text-zinc-300 hover:text-zinc-50 cursor-pointer"
+                className="text-zinc-300 hover:text-zinc-50 cursor-pointer transition-colors"
               >
                 Getting started
               </Link>
@@ -315,7 +315,7 @@ function Footer() {
             <li>
               <Link
                 to="/help"
-                className="text-zinc-300 hover:text-zinc-50 cursor-pointer"
+                className="text-zinc-300 hover:text-zinc-50 cursor-pointer transition-colors"
               >
                 Help & FAQ
               </Link>
@@ -323,7 +323,7 @@ function Footer() {
             <li>
               <Link
                 to="/sample-data"
-                className="text-zinc-300 hover:text-zinc-50 cursor-pointer"
+                className="text-zinc-300 hover:text-zinc-50 cursor-pointer transition-colors"
               >
                 Sample data
               </Link>
@@ -331,10 +331,10 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className="mt-6 pt-4 border-t border-zinc-900 flex items-center justify-between text-[11px] font-mono text-zinc-600">
+      <div className="mt-7 pt-5 border-t border-hairline flex items-center justify-between text-[11px] font-mono text-zinc-600">
         <span>MIT License</span>
         <span className="inline-flex items-center gap-1.5">
-          <ShieldCheck className="h-3 w-3" />
+          <ShieldCheck strokeWidth={1.75} className="h-3 w-3" />
           no auth · no PII · single tenant
         </span>
       </div>
@@ -344,7 +344,7 @@ function Footer() {
 
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-[10px] uppercase tracking-[0.2em] font-medium text-zinc-500 mb-2">
+    <div className="text-xs uppercase tracking-wide font-medium text-zinc-500 mb-3">
       {children}
     </div>
   );
@@ -352,7 +352,7 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-[26px] sm:text-[30px] font-semibold tracking-tight text-zinc-50 max-w-2xl leading-tight">
+    <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-50 max-w-2xl leading-tight">
       {children}
     </h2>
   );

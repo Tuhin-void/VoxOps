@@ -48,21 +48,20 @@ export function VoiceRecorder({ busy, onAudio }: Props) {
 
   return (
     <Card>
-      <CardContent className="pt-7 pb-7 flex flex-col items-center gap-5">
+      <CardContent className="pt-8 pb-8 flex flex-col items-center gap-6">
         <div className="w-full flex items-center justify-between">
-          <div className="text-[10px] uppercase tracking-[0.18em] font-medium text-zinc-500">
+          <div className="text-xs uppercase tracking-wide font-medium text-zinc-500">
             Field capture
           </div>
           <StateLabel state={state} elapsed={`${mm}:${ss}`} />
         </div>
 
-        {/* Mic button */}
         <div className="relative flex items-center justify-center my-3">
           {state === "recording" && (
             <>
-              <span className="absolute h-28 w-28 rounded-full border border-rose-500/40 animate-rec-ring" />
+              <span className="absolute h-28 w-28 rounded-full border border-red-500/40 animate-rec-ring" />
               <span
-                className="absolute h-28 w-28 rounded-full border border-rose-500/30 animate-rec-ring"
+                className="absolute h-28 w-28 rounded-full border border-red-500/30 animate-rec-ring"
                 style={{ animationDelay: "0.5s" }}
               />
             </>
@@ -74,27 +73,26 @@ export function VoiceRecorder({ busy, onAudio }: Props) {
             aria-label={recording ? "Stop recording" : "Start recording"}
             className={`relative flex h-24 w-24 items-center justify-center rounded-full transition-colors cursor-pointer ${
               state === "recording"
-                ? "bg-rose-500 hover:bg-rose-400"
+                ? "bg-red-500 hover:bg-red-400"
                 : state === "busy"
                 ? "bg-zinc-800 cursor-wait"
-                : "bg-zinc-100 hover:bg-white"
+                : "bg-primary hover:bg-primary-hover"
             }`}
           >
             {state === "busy" ? (
-              <Loader2 className="h-9 w-9 text-zinc-400 animate-spin" />
+              <Loader2 strokeWidth={1.75} className="h-9 w-9 text-zinc-300 animate-spin" />
             ) : state === "recording" ? (
               <Square
-                className="h-7 w-7 text-white"
+                className="h-6 w-6 text-white"
                 fill="currentColor"
               />
             ) : (
-              <Mic className="h-9 w-9 text-black" strokeWidth={2.5} />
+              <Mic className="h-9 w-9 text-white" strokeWidth={1.75} />
             )}
           </button>
         </div>
 
-        {/* Instruction */}
-        <p className="text-[12px] text-zinc-500 text-center max-w-xs leading-relaxed">
+        <p className="text-sm text-zinc-500 text-center max-w-xs leading-relaxed">
           {state === "recording"
             ? "Recording — tap to stop."
             : state === "busy"
@@ -103,8 +101,8 @@ export function VoiceRecorder({ busy, onAudio }: Props) {
         </p>
 
         {error && (
-          <div className="flex items-start gap-2 text-[12px] text-rose-300 border border-rose-500/30 bg-rose-500/5 px-3 py-2 rounded-md w-full">
-            <AlertCircle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-rose-400" />
+          <div className="flex items-start gap-2 text-[12px] text-red-300 border border-red-500/30 bg-red-500/5 px-3 py-2 rounded-md w-full">
+            <AlertCircle strokeWidth={1.75} className="h-4 w-4 mt-px shrink-0 text-red-400" />
             <span>{error}</span>
           </div>
         )}
@@ -122,10 +120,10 @@ function StateLabel({
 }) {
   if (state === "recording") {
     return (
-      <div className="flex items-center gap-1.5 text-[11px] font-mono font-medium text-rose-400">
+      <div className="flex items-center gap-1.5 text-[11px] font-mono font-medium text-red-400">
         <span className="relative inline-flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75 animate-ping" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-rose-400" />
+          <span className="absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75 animate-ping" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-400" />
         </span>
         REC {elapsed}
       </div>
@@ -140,7 +138,7 @@ function StateLabel({
   }
   return (
     <div className="flex items-center gap-1.5 text-[11px] font-mono font-medium text-zinc-500">
-      <span className="h-1.5 w-1.5 rounded-full bg-accent-400 animate-subtle-pulse" />
+      <span className="h-1.5 w-1.5 rounded-full bg-primary animate-subtle-pulse" />
       ready
     </div>
   );

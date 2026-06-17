@@ -156,7 +156,7 @@ export function GettingStartedPage() {
         </p>
       </Section>
 
-      <div className="surface rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+      <div className="surface rounded-3xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
         <div className="flex items-start gap-3">
           <CircleCheck className="h-5 w-5 text-accent-400 mt-0.5" />
           <div>
@@ -171,7 +171,7 @@ export function GettingStartedPage() {
         </div>
         <Link
           to="/worker"
-          className="shrink-0 inline-flex items-center gap-1.5 bg-zinc-100 text-black px-3.5 py-1.5 rounded-md text-[13px] font-medium hover:bg-white cursor-pointer"
+          className="shrink-0 inline-flex items-center gap-1.5 bg-primary text-white px-4 py-2 rounded-md text-[13px] font-medium hover:bg-primary-hover cursor-pointer"
         >
           Open worker console
           <ArrowRight className="h-3.5 w-3.5" />
@@ -200,7 +200,7 @@ function Section({
 
 function Persona({ title, body }: { title: string; body: string }) {
   return (
-    <div className="surface rounded-xl p-4">
+    <div className="surface rounded-3xl p-4">
       <div className="text-[13px] font-semibold text-zinc-100">{title}</div>
       <div className="text-[12px] text-zinc-400 mt-1 leading-relaxed">
         {body}
@@ -223,7 +223,7 @@ function Step({
   example?: string;
 }) {
   return (
-    <li className="surface rounded-xl p-4">
+    <li className="surface rounded-3xl p-4">
       <div className="flex items-start gap-3">
         <span className="font-mono text-[11px] text-zinc-600 pt-0.5">
           0{n}
@@ -272,7 +272,7 @@ function ShotCard({
   body: string;
 }) {
   return (
-    <div className="surface rounded-xl overflow-hidden">
+    <div className="surface rounded-3xl overflow-hidden">
       <div className="aspect-[16/10] bg-zinc-950 border-b border-zinc-900 flex items-center justify-center">
         <img
           src={src}

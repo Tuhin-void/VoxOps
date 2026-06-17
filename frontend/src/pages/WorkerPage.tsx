@@ -74,11 +74,11 @@ export function WorkerPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <PageHeader online={online} pending={pending.length} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div className="space-y-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="space-y-6">
           <VoiceRecorder busy={transcribing} onAudio={handleAudio} />
           <TranscriptCard transcript={transcript} loading={transcribing} />
           <InspectionCard
@@ -87,12 +87,12 @@ export function WorkerPage() {
             onSave={handleSave}
           />
           {error && (
-            <div className="text-[12px] border border-rose-500/30 bg-rose-500/5 text-rose-300 px-3 py-2 rounded-md animate-fade-in-up">
+            <div className="text-[12px] border border-red-500/30 bg-red-500/5 text-red-300 px-3 py-2.5 rounded-md animate-fade-in">
               {error}
             </div>
           )}
         </div>
-        <div className="space-y-5">
+        <div className="space-y-6">
           <QueryPanel />
           <WorkOrderCard />
           <SyncQueueCard
@@ -115,15 +115,15 @@ function PageHeader({
   pending: number;
 }) {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <div>
-        <div className="text-[10px] uppercase tracking-[0.18em] font-medium text-zinc-500 mb-2">
+        <div className="text-xs uppercase tracking-wide font-medium text-zinc-500 mb-3">
           Worker
         </div>
-        <h1 className="text-[28px] font-semibold tracking-tight text-zinc-50">
+        <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
           Speak it. We handle the paperwork.
         </h1>
-        <p className="text-[13px] text-zinc-500 mt-1.5 max-w-xl leading-relaxed">
+        <p className="text-sm text-zinc-400 mt-3 max-w-xl leading-relaxed">
           Record an inspection by voice. We transcribe, extract structured
           fields, and answer equipment questions from your manuals.
         </p>
@@ -132,17 +132,17 @@ function PageHeader({
         <StatusChip
           icon={
             online ? (
-              <Wifi className="h-3 w-3" />
+              <Wifi className="h-3 w-3" strokeWidth={1.75} />
             ) : (
-              <WifiOff className="h-3 w-3" />
+              <WifiOff className="h-3 w-3" strokeWidth={1.75} />
             )
           }
           label={online ? "online" : "offline"}
-          tone={online ? "neutral" : "warn"}
+          tone={online ? "ok" : "warn"}
         />
         {pending > 0 && (
           <StatusChip
-            icon={<span className="h-1.5 w-1.5 rounded-full bg-accent-400" />}
+            icon={<span className="h-1.5 w-1.5 rounded-full bg-primary" />}
             label={`${pending} queued`}
             tone="accent"
           />
@@ -159,17 +159,17 @@ function StatusChip({
 }: {
   icon: React.ReactNode;
   label: string;
-  tone: "neutral" | "warn" | "accent";
+  tone: "ok" | "warn" | "accent";
 }) {
   const styles =
-    tone === "neutral"
-      ? "border-zinc-800 text-zinc-400"
+    tone === "ok"
+      ? "border-emerald-500/40 text-emerald-400"
       : tone === "warn"
-      ? "border-rose-500/30 text-rose-400"
-      : "border-accent-400/30 text-accent-300";
+      ? "border-red-500/40 text-red-400"
+      : "border-primary/40 text-primary";
   return (
     <span
-      className={`inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded border ${styles}`}
+      className={`inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wide px-2 py-1 rounded border ${styles}`}
     >
       {icon}
       {label}

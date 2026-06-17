@@ -33,7 +33,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <Ctx.Provider value={{ notify }}>
       {children}
-      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none">
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none">
         {items.map((t) => {
           const Icon =
             t.kind === "success"
@@ -45,18 +45,19 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             <div
               key={t.id}
               className={cn(
-                "pointer-events-auto flex items-start gap-2 rounded-md px-3.5 py-2.5 text-[13px] surface animate-fade-in-up min-w-[240px] max-w-sm",
+                "pointer-events-auto flex items-start gap-2.5 rounded-xl px-4 py-3 text-[13px] border border-hairline bg-surface animate-fade-in min-w-[280px] max-w-sm",
                 t.kind === "success" && "text-emerald-300",
-                t.kind === "error" && "text-rose-300",
+                t.kind === "error" && "text-red-300",
                 t.kind === "info" && "text-zinc-100"
               )}
             >
               <Icon
+                strokeWidth={1.75}
                 className={cn(
                   "h-4 w-4 mt-0.5 shrink-0",
                   t.kind === "success" && "text-emerald-400",
-                  t.kind === "error" && "text-rose-400",
-                  t.kind === "info" && "text-accent-400"
+                  t.kind === "error" && "text-red-400",
+                  t.kind === "info" && "text-primary"
                 )}
               />
               <span className="leading-snug">{t.message}</span>

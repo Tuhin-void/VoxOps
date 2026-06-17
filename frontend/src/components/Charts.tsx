@@ -18,28 +18,28 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-// Mostly zinc shades + the single accent cyan. Critical stays semantic rose.
+// Four-color chart palette: cyan, emerald, amber, red.
 const SEVERITY_COLORS: Record<string, string> = {
-  Low: "#52525b",
-  Medium: "#71717a",
-  High: "#a1a1aa",
-  Critical: "#fb7185",
-  Unknown: "#3f3f46",
+  Low: "#10B981", // emerald
+  Medium: "#F59E0B", // amber
+  High: "#F59E0B", // amber (saturated via stroke)
+  Critical: "#EF4444", // red
+  Unknown: "#3F3F46", // zinc
 };
 
 const STATUS_COLORS: Record<string, string> = {
-  Open: "#22d3ee",
-  "In Progress": "#a1a1aa",
-  Closed: "#3f3f46",
+  Open: "#06B6D4", // cyan
+  "In Progress": "#F59E0B", // amber
+  Closed: "#10B981", // emerald
 };
 
 const tooltipStyle = {
-  background: "#0a0a0a",
-  border: "1px solid #27272a",
-  borderRadius: "6px",
-  color: "#e4e4e7",
-  fontSize: 11,
-  padding: "6px 10px",
+  background: "#111113",
+  border: "1px solid #27272A",
+  borderRadius: "8px",
+  color: "#FAFAFA",
+  fontSize: 12,
+  padding: "8px 10px",
 };
 
 interface SeverityProps {
@@ -71,16 +71,17 @@ export function SeverityPie({ data }: SeverityProps) {
                 data={entries}
                 dataKey="value"
                 nameKey="name"
-                innerRadius={56}
-                outerRadius={88}
+                innerRadius={58}
+                outerRadius={90}
                 paddingAngle={2}
-                stroke="#000"
+                stroke="#09090B"
                 strokeWidth={2}
               >
                 {entries.map((e) => (
                   <Cell
                     key={e.name}
-                    fill={SEVERITY_COLORS[e.name] || "#3f3f46"}
+                    fill={SEVERITY_COLORS[e.name] || "#3F3F46"}
+                    fillOpacity={e.name === "High" ? 0.75 : 1}
                   />
                 ))}
               </Pie>
@@ -92,7 +93,7 @@ export function SeverityPie({ data }: SeverityProps) {
                 iconType="circle"
                 iconSize={6}
                 formatter={(v) => (
-                  <span style={{ color: "#a1a1aa", fontSize: 11 }}>{v}</span>
+                  <span style={{ color: "#A1A1AA", fontSize: 12 }}>{v}</span>
                 )}
               />
             </PieChart>
@@ -131,15 +132,15 @@ export function WorkOrderStatusBar({ data }: StatusProps) {
             >
               <XAxis
                 dataKey="name"
-                tick={{ fontSize: 11, fill: "#71717a" }}
+                tick={{ fontSize: 11, fill: "#A1A1AA" }}
                 tickLine={false}
-                axisLine={{ stroke: "#1f1f1f" }}
+                axisLine={{ stroke: "#27272A" }}
               />
               <YAxis
                 allowDecimals={false}
-                tick={{ fontSize: 11, fill: "#71717a" }}
+                tick={{ fontSize: 11, fill: "#A1A1AA" }}
                 tickLine={false}
-                axisLine={{ stroke: "#1f1f1f" }}
+                axisLine={{ stroke: "#27272A" }}
               />
               <Tooltip
                 contentStyle={tooltipStyle}
@@ -149,7 +150,7 @@ export function WorkOrderStatusBar({ data }: StatusProps) {
                 {entries.map((e) => (
                   <Cell
                     key={e.name}
-                    fill={STATUS_COLORS[e.name] || "#71717a"}
+                    fill={STATUS_COLORS[e.name] || "#06B6D4"}
                   />
                 ))}
               </Bar>
@@ -163,7 +164,7 @@ export function WorkOrderStatusBar({ data }: StatusProps) {
 
 function EmptyChart({ label }: { label: string }) {
   return (
-    <div className="h-full w-full flex items-center justify-center text-[12px] text-zinc-600">
+    <div className="h-full w-full flex items-center justify-center text-sm text-zinc-600">
       {label}
     </div>
   );

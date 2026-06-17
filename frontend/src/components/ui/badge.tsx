@@ -13,17 +13,24 @@ type Variant =
   | "progress"
   | "closed";
 
+// Six-color palette only. Status semantics:
+//   Open       → cyan      (primary)
+//   In Progress→ amber     (warning)
+//   Closed     → emerald   (success)
+//   Critical   → red       (danger)
+//   High/Med   → amber
+//   Low        → emerald
 const styles: Record<Variant, string> = {
-  default: "bg-zinc-900 text-zinc-300 border border-zinc-800",
-  secondary: "bg-zinc-900 text-zinc-400 border border-zinc-800",
-  outline: "border border-zinc-800 text-zinc-400",
-  low: "bg-transparent text-emerald-400 border border-emerald-500/30",
-  medium: "bg-transparent text-amber-400 border border-amber-500/30",
-  high: "bg-transparent text-orange-400 border border-orange-500/30",
-  critical: "bg-rose-500/10 text-rose-300 border border-rose-500/40",
-  open: "bg-transparent text-accent-300 border border-accent-400/30",
-  progress: "bg-transparent text-amber-400 border border-amber-500/30",
-  closed: "bg-transparent text-zinc-500 border border-zinc-800",
+  default: "bg-surface text-zinc-300 border border-hairline",
+  secondary: "bg-surface text-zinc-400 border border-hairline",
+  outline: "border border-hairline text-zinc-400",
+  low: "bg-transparent text-emerald-400 border border-emerald-500/40",
+  medium: "bg-transparent text-amber-400 border border-amber-500/40",
+  high: "bg-transparent text-amber-300 border border-amber-500/60",
+  critical: "bg-red-500/10 text-red-400 border border-red-500/50",
+  open: "bg-primary/10 text-primary border border-primary/40",
+  progress: "bg-transparent text-amber-400 border border-amber-500/40",
+  closed: "bg-transparent text-emerald-400 border border-emerald-500/40",
 };
 
 export function Badge({

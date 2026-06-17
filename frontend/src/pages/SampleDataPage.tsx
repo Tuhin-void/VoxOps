@@ -125,7 +125,7 @@ export function SampleDataPage() {
         ))}
       </div>
 
-      <div className="surface rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+      <div className="surface rounded-3xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
         <div>
           <div className="text-[14px] font-semibold text-zinc-100">
             Pick a tag and go.
@@ -137,7 +137,7 @@ export function SampleDataPage() {
         </div>
         <Link
           to="/worker"
-          className="shrink-0 inline-flex items-center gap-1.5 bg-zinc-100 text-black px-3.5 py-1.5 rounded-md text-[13px] font-medium hover:bg-white cursor-pointer"
+          className="shrink-0 inline-flex items-center gap-1.5 bg-primary text-white px-4 py-2 rounded-md text-[13px] font-medium hover:bg-primary-hover cursor-pointer"
         >
           Open worker console
           <ArrowRight className="h-3.5 w-3.5" />
@@ -149,7 +149,7 @@ export function SampleDataPage() {
 
 function EquipmentCard({ eq }: { eq: Equipment }) {
   return (
-    <article className="surface rounded-xl p-5">
+    <article className="surface rounded-3xl p-5">
       <header className="flex items-start justify-between gap-3 mb-4">
         <div className="flex items-start gap-3">
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-zinc-900 border border-zinc-800">
@@ -160,7 +160,7 @@ function EquipmentCard({ eq }: { eq: Equipment }) {
               <h2 className="text-[15px] font-semibold text-zinc-100">
                 {eq.name}
               </h2>
-              <span className="font-mono text-[12px] text-accent-300 bg-accent-400/10 border border-accent-400/30 px-1.5 py-0.5 rounded">
+              <span className="font-mono text-[12px] text-primary bg-primary/10 border border-primary/40 px-1.5 py-0.5 rounded">
                 {eq.tag}
               </span>
             </div>
@@ -219,7 +219,7 @@ function EquipmentCard({ eq }: { eq: Equipment }) {
 
       <div className="mt-5 pt-4 border-t border-zinc-900">
         <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wide text-zinc-500 font-mono mb-2">
-          <Sparkles className="h-3 w-3 text-accent-400" />
+          <Sparkles className="h-3 w-3 text-primary" />
           Try asking
         </div>
         <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -263,7 +263,7 @@ function StatusPill({ status }: { status: string }) {
       ? "border-zinc-800 text-zinc-500"
       : status.toLowerCase() === "in progress"
       ? "border-amber-500/30 text-amber-400"
-      : "border-accent-400/30 text-accent-300";
+      : "border-primary/40 text-primary";
   return (
     <span
       className={`shrink-0 font-mono text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded border ${tone}`}

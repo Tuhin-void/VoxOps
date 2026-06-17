@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { X, Sparkles, Mic, HelpCircle, ArrowRight } from "lucide-react";
+import { X, Mic, HelpCircle, ArrowRight } from "lucide-react";
 
 const STORAGE_KEY = "voxops.onboarded.v1";
 
@@ -10,8 +10,10 @@ export function OnboardingModal() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Show once, only after the user lands somewhere non-marketing.
-    if (location.pathname === "/" || location.pathname.startsWith("/getting-started"))
+    if (
+      location.pathname === "/" ||
+      location.pathname.startsWith("/getting-started")
+    )
       return;
     try {
       if (!localStorage.getItem(STORAGE_KEY)) {
@@ -42,32 +44,31 @@ export function OnboardingModal() {
         onClick={dismiss}
         className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer"
       />
-      <div className="relative max-w-md w-full surface rounded-2xl p-6 animate-fade-in-up">
+      <div className="relative max-w-md w-full bg-surface border border-hairline rounded-3xl p-7 animate-fade-in">
         <button
           type="button"
           onClick={dismiss}
           aria-label="Close"
-          className="absolute top-3 right-3 p-1 rounded-md text-zinc-500 hover:text-zinc-200 hover:bg-zinc-900 transition-colors cursor-pointer"
+          className="absolute top-4 right-4 p-1 rounded-md text-zinc-500 hover:text-zinc-200 hover:bg-canvas transition-colors cursor-pointer"
         >
-          <X className="h-4 w-4" />
+          <X strokeWidth={1.75} className="h-4 w-4" />
         </button>
 
-        <div className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] font-medium text-accent-300 mb-3">
-          <Sparkles className="h-3 w-3" />
+        <div className="text-xs uppercase tracking-wide font-medium text-primary mb-3">
           Welcome
         </div>
 
-        <h2 className="text-xl font-semibold tracking-tight text-zinc-50">
+        <h2 className="text-2xl font-semibold tracking-tight text-zinc-50">
           Try VoxOps in 30 seconds.
         </h2>
-        <p className="text-[13px] text-zinc-400 mt-1.5 leading-relaxed">
+        <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
           Two voice prompts is all it takes to see what this thing does.
         </p>
 
-        <div className="mt-5 space-y-2.5">
+        <div className="mt-6 space-y-2.5">
           <Step
             n={1}
-            icon={<Mic className="h-3.5 w-3.5 text-rose-400" />}
+            icon={<Mic strokeWidth={1.75} className="h-4 w-4 text-red-400" />}
             title="Record an inspection"
             body={
               <span className="italic">
@@ -78,7 +79,9 @@ export function OnboardingModal() {
           />
           <Step
             n={2}
-            icon={<HelpCircle className="h-3.5 w-3.5 text-accent-400" />}
+            icon={
+              <HelpCircle strokeWidth={1.75} className="h-4 w-4 text-primary" />
+            }
             title="Ask the assistant"
             body={
               <span className="italic">"When was Pump P101 serviced last?"</span>
@@ -86,24 +89,24 @@ export function OnboardingModal() {
           />
         </div>
 
-        <div className="mt-6 flex items-center justify-between gap-3">
+        <div className="mt-7 flex items-center justify-between gap-3">
           <button
             type="button"
             onClick={() => {
               dismiss();
               navigate("/getting-started");
             }}
-            className="text-[12px] text-zinc-500 hover:text-zinc-200 cursor-pointer"
+            className="text-xs text-zinc-500 hover:text-zinc-200 cursor-pointer transition-colors"
           >
             Full guide →
           </button>
           <button
             type="button"
             onClick={dismiss}
-            className="inline-flex items-center gap-1.5 text-[13px] font-medium bg-zinc-100 text-black px-3.5 py-1.5 rounded-md hover:bg-white cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-[13px] font-medium bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-hover transition-colors cursor-pointer"
           >
             Got it
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight strokeWidth={1.75} className="h-3.5 w-3.5" />
           </button>
         </div>
       </div>
@@ -123,18 +126,14 @@ function Step({
   body: React.ReactNode;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-md border border-zinc-800 bg-zinc-950 p-3">
-      <span className="font-mono text-[11px] text-zinc-600 mt-0.5">
-        0{n}
-      </span>
+    <div className="flex items-start gap-3 rounded-xl border border-hairline bg-canvas p-3.5">
+      <span className="font-mono text-[11px] text-zinc-600 mt-0.5">0{n}</span>
       <div className="flex-1">
-        <div className="flex items-center gap-1.5 text-[12px] font-medium text-zinc-200">
+        <div className="flex items-center gap-1.5 text-sm font-medium text-zinc-100">
           {icon}
           {title}
         </div>
-        <div className="text-[12px] text-zinc-400 mt-1 leading-relaxed">
-          {body}
-        </div>
+        <div className="text-sm text-zinc-400 mt-1 leading-relaxed">{body}</div>
       </div>
     </div>
   );

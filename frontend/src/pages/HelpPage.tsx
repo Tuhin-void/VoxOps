@@ -211,7 +211,7 @@ export function HelpPage() {
       <Section title="Example phrases">
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {PHRASES.map((p) => (
-            <li key={p.label} className="surface rounded-md p-3">
+            <li key={p.label} className="bg-surface border border-hairline rounded-xl p-3">
               <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wide text-zinc-500 font-mono mb-1">
                 <MessageSquareQuote className="h-3 w-3" />
                 {p.label}
@@ -227,7 +227,7 @@ export function HelpPage() {
       <Section title="What every UI section does">
         <div className="space-y-2">
           {UI_SECTIONS.map((u) => (
-            <div key={u.title} className="surface rounded-md p-4">
+            <div key={u.title} className="bg-surface border border-hairline rounded-xl p-4">
               <div className="text-[13px] font-semibold text-zinc-100 mb-1">
                 {u.title}
               </div>
@@ -270,7 +270,7 @@ function Section({
 function FAQItem({ q, a }: { q: string; a: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
-    <li className="surface rounded-md">
+    <li className="bg-surface border border-hairline rounded-xl">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

@@ -1,4 +1,4 @@
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, ShieldCheck } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -23,11 +23,11 @@ export function AlertsPanel({ inspections }: Props) {
       <CardHeader>
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <AlertTriangle className="h-3.5 w-3.5 text-zinc-500" />
+            <AlertTriangle className="h-4 w-4 text-zinc-500" strokeWidth={1.75} />
             <CardTitle>Critical Alerts</CardTitle>
           </div>
           {alerts.length > 0 && (
-            <span className="text-[10px] font-mono text-rose-400 border border-rose-500/30 px-1.5 py-0.5 rounded">
+            <span className="text-[10px] font-mono text-red-400 border border-red-500/40 px-1.5 py-0.5 rounded">
               {alerts.length} active
             </span>
           )}
@@ -38,33 +38,41 @@ export function AlertsPanel({ inspections }: Props) {
       </CardHeader>
       <CardContent>
         {alerts.length === 0 ? (
-          <div className="text-[12px] text-zinc-600 py-2">
-            All clear. No active high or critical alerts.
+          <div className="flex items-start gap-3 py-1">
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-canvas border border-hairline shrink-0">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" strokeWidth={1.75} />
+            </span>
+            <div>
+              <div className="text-sm font-medium text-zinc-200">All clear</div>
+              <div className="text-xs text-zinc-500 mt-0.5 leading-relaxed">
+                No high or critical alerts at this time.
+              </div>
+            </div>
           </div>
         ) : (
-          <ul className="divide-y divide-zinc-900 max-h-80 overflow-y-auto">
+          <ul className="divide-y divide-hairline/60 max-h-80 overflow-y-auto">
             {alerts.map((a) => (
-              <li key={a.id} className="py-3 flex items-start gap-2.5">
+              <li key={a.id} className="py-3 flex items-start gap-3">
                 <span
                   className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${
-                    a.severity === "Critical" ? "bg-rose-400" : "bg-orange-400"
+                    a.severity === "Critical" ? "bg-red-400" : "bg-amber-400"
                   }`}
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-mono text-[12px] text-zinc-100">
+                    <span className="font-mono text-sm text-zinc-50">
                       {a.equipment_id || "Unknown"}
                     </span>
                     <Badge variant={severityVariant(a.severity)}>
                       {a.severity}
                     </Badge>
                   </div>
-                  <div className="text-[12px] text-zinc-400 mt-0.5">
+                  <div className="text-sm text-zinc-400 mt-1 leading-relaxed">
                     {a.fault_description ||
                       a.inspection_result ||
                       "(no description)"}
                   </div>
-                  <div className="text-[10px] text-zinc-600 font-mono mt-0.5">
+                  <div className="text-[10px] text-zinc-600 font-mono mt-1">
                     {new Date(a.timestamp).toLocaleString()}
                   </div>
                 </div>

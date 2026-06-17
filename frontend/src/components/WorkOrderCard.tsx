@@ -74,7 +74,7 @@ export function WorkOrderCard() {
       <CardHeader>
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <Wrench className="h-3.5 w-3.5 text-zinc-500" />
+            <Wrench className="h-4 w-4 text-zinc-500" strokeWidth={1.75} />
             <CardTitle>Work Orders</CardTitle>
           </div>
           <span className="text-[11px] font-mono text-zinc-600">
@@ -83,9 +83,9 @@ export function WorkOrderCard() {
         </div>
         <CardDescription>Create, update, and close work orders.</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-5">
         <form
-          className="grid grid-cols-1 sm:grid-cols-[120px_1fr_auto] gap-2"
+          className="grid grid-cols-1 sm:grid-cols-[130px_1fr_auto] gap-2"
           onSubmit={(e) => {
             e.preventDefault();
             if (eq.trim() && !createMut.isPending) createMut.mutate();
@@ -104,9 +104,9 @@ export function WorkOrderCard() {
           />
           <Button type="submit" disabled={!eq.trim() || createMut.isPending}>
             {createMut.isPending ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              <Loader2 strokeWidth={1.75} className="h-3.5 w-3.5 animate-spin" />
             ) : (
-              <Plus className="h-3.5 w-3.5" />
+              <Plus strokeWidth={1.75} className="h-3.5 w-3.5" />
             )}
             Create
           </Button>
@@ -115,26 +115,26 @@ export function WorkOrderCard() {
         {isLoading ? (
           <div className="space-y-2">
             {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="h-12 rounded shimmer-bg animate-shimmer"
-              />
+              <div key={i} className="h-14 skeleton" />
             ))}
           </div>
         ) : error ? (
-          <div className="text-[12px] text-rose-300 border border-rose-500/30 bg-rose-500/5 px-3 py-2 rounded-md">
+          <div className="text-[12px] text-red-300 border border-red-500/30 bg-red-500/5 px-3 py-2 rounded-md">
             Could not load work orders.
           </div>
         ) : data && data.length > 0 ? (
-          <ul className="divide-y divide-zinc-900">
+          <ul className="divide-y divide-hairline/60 -mx-1">
             {data.map((wo: WorkOrder) => (
-              <li key={wo.id} className="py-2.5 flex items-center gap-3">
+              <li
+                key={wo.id}
+                className="px-1 py-3 flex items-center gap-3 hover:bg-zinc-900/30 transition-colors rounded-md"
+              >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-[11px] font-mono text-zinc-600">
                       #{wo.id}
                     </span>
-                    <span className="font-mono text-[13px] text-zinc-100">
+                    <span className="font-mono text-sm text-zinc-50">
                       {wo.equipment_id}
                     </span>
                     <Badge variant={statusVariant(wo.status)}>
@@ -142,7 +142,7 @@ export function WorkOrderCard() {
                     </Badge>
                   </div>
                   {wo.description && (
-                    <div className="text-[12px] text-zinc-400 mt-0.5 truncate">
+                    <div className="text-sm text-zinc-400 mt-0.5 truncate">
                       {wo.description}
                     </div>
                   )}
@@ -151,7 +151,7 @@ export function WorkOrderCard() {
                   </div>
                 </div>
                 <select
-                  className="text-[11px] border border-zinc-800 rounded-md px-2 py-1 bg-zinc-950 text-zinc-300 cursor-pointer hover:border-zinc-700 focus:outline-none focus:border-accent-400/60"
+                  className="text-[11px] border border-hairline rounded-md px-2 py-1.5 bg-canvas text-zinc-200 cursor-pointer hover:border-zinc-700 focus:outline-none focus:border-primary/60"
                   value={wo.status}
                   onChange={(e) =>
                     updateMut.mutate({ id: wo.id, status: e.target.value })
@@ -172,20 +172,37 @@ export function WorkOrderCard() {
                       deleteMut.mutate(wo.id);
                     }
                   }}
-                  className="p-1 text-zinc-600 hover:text-rose-400 rounded-md hover:bg-rose-500/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="p-1.5 text-zinc-600 hover:text-red-400 rounded-md hover:bg-red-500/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   aria-label={`Delete work order ${wo.id}`}
                 >
-                  <Trash2 className="h-3.5 w-3.5" />
+                  <Trash2 strokeWidth={1.75} className="h-3.5 w-3.5" />
                 </button>
               </li>
             ))}
           </ul>
         ) : (
-          <div className="text-[12px] text-zinc-600 py-2">
-            No work orders yet. Create one above.
-          </div>
+          <EmptyState />
         )}
       </CardContent>
     </Card>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="flex items-start gap-3 py-1">
+      <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-canvas border border-hairline shrink-0">
+        <Wrench className="h-3.5 w-3.5 text-zinc-500" strokeWidth={1.75} />
+      </span>
+      <div>
+        <div className="text-sm font-medium text-zinc-200">
+          No work orders yet
+        </div>
+        <div className="text-xs text-zinc-500 mt-0.5 leading-relaxed">
+          Add equipment tag <span className="font-mono text-zinc-300">P101</span>
+          {" "}above and press Create.
+        </div>
+      </div>
+    </div>
   );
 }
