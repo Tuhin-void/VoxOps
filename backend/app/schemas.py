@@ -54,10 +54,6 @@ class QueryResponse(BaseModel):
     sources: List[str] = Field(default_factory=list)
 
 
-class TTSRequest(BaseModel):
-    text: str
-
-
 # ---------- Work Orders ----------
 
 class WorkOrderCreate(BaseModel):

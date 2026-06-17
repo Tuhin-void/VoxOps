@@ -51,18 +51,6 @@ export async function postFormData<TResp>(
   return asJson<TResp>(res);
 }
 
-export async function postForBlob(path: string, body: unknown): Promise<Blob> {
-  const res = await fetch(`${API_BASE}${path}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) {
-    throw new Error(`Request failed (${res.status})`);
-  }
-  return res.blob();
-}
-
 export async function pingBackend(): Promise<boolean> {
   try {
     const res = await fetch(`${API_BASE}/health`, { method: "GET" });

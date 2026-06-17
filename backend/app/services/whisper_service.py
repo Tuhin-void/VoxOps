@@ -1,8 +1,9 @@
 import os
 import tempfile
+from typing import Optional
 from openai import OpenAI
 
-_client: OpenAI | None = None
+_client: Optional[OpenAI] = None
 
 
 def _get_client() -> OpenAI:
@@ -11,16 +12,17 @@ def _get_client() -> OpenAI:
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise RuntimeError("OPENAI_API_KEY not set")
-        _client = OpenAI(api_key=api_key)
+        base_url = os.getenv("OPENAI_BASE_URL") or None
+        _client = OpenAI(api_key=api_key, base_url=base_url)
     return _client
 
 
 def transcribe_audio(audio_bytes: bytes, filename: str = "audio.webm") -> str:
-    """Transcribe an audio blob using OpenAI Whisper."""
+    """Transcribe an audio blob via the configured Whisper endpoint."""
     client = _get_client()
-    model = os.getenv("WHISPER_MODEL", "whisper-1")
+    model = os.getenv("WHISPER_MODEL", "whisper-large-v3")
 
-    # Whisper SDK wants a file-like object with a name.
+    # The SDK wants a file-like object with a name.
     suffix = os.path.splitext(filename)[1] or ".webm"
     with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
         tmp.write(audio_bytes)

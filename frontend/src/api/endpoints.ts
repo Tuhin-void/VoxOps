@@ -1,4 +1,4 @@
-import { getJson, postForBlob, postFormData, postJson, putJson } from "./client";
+import { getJson, postFormData, postJson, putJson } from "./client";
 import type {
   DashboardStats,
   Inspection,
@@ -25,8 +25,6 @@ export const api = {
 
   query: (question: string) =>
     postJson<QueryResponse>("/query", { question }),
-
-  tts: (text: string) => postForBlob("/tts", { text }),
 
   listWorkOrders: () => getJson<WorkOrder[]>("/work-orders"),
 

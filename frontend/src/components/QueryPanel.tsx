@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, Send, Volume2, Loader2 } from "lucide-react";
+import { Sparkles, Send, Volume2, VolumeX, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,47 +23,52 @@ const SAMPLE_QUESTIONS = [
   "How do I replace filter F22?",
 ];
 
+const SUPPORTS_TTS =
+  typeof window !== "undefined" && "speechSynthesis" in window;
+
 export function QueryPanel() {
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState<AskResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  const [ttsLoading, setTtsLoading] = useState(false);
-  const audioElRef = useRef<HTMLAudioElement | null>(null);
+  const [speaking, setSpeaking] = useState(false);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   useEffect(() => {
     return () => {
-      if (audioUrl) URL.revokeObjectURL(audioUrl);
+      if (SUPPORTS_TTS) window.speechSynthesis.cancel();
     };
-  }, [audioUrl]);
+  }, []);
+
+  const speak = (text: string) => {
+    if (!SUPPORTS_TTS || !text.trim()) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 1;
+    u.pitch = 1;
+    u.onend = () => setSpeaking(false);
+    u.onerror = () => setSpeaking(false);
+    utteranceRef.current = u;
+    setSpeaking(true);
+    window.speechSynthesis.speak(u);
+  };
+
+  const stopSpeaking = () => {
+    if (!SUPPORTS_TTS) return;
+    window.speechSynthesis.cancel();
+    setSpeaking(false);
+  };
 
   const ask = async (q: string) => {
     if (!q.trim()) return;
     setLoading(true);
     setError(null);
     setResult(null);
-    if (audioElRef.current) {
-      audioElRef.current.pause();
-      audioElRef.current = null;
-    }
-    setAudioUrl(null);
+    stopSpeaking();
     try {
       const res = await api.query(q);
       setResult({ question: q, answer: res.answer, sources: res.sources });
-      try {
-        setTtsLoading(true);
-        const blob = await api.tts(res.answer);
-        const url = URL.createObjectURL(blob);
-        setAudioUrl(url);
-        const audio = new Audio(url);
-        audioElRef.current = audio;
-        audio.play().catch(() => {});
-      } catch {
-        /* TTS optional */
-      } finally {
-        setTtsLoading(false);
-      }
+      speak(res.answer);
     } catch (e: any) {
       setError(e?.message || "Query failed.");
     } finally {
@@ -129,8 +134,32 @@ export function QueryPanel() {
 
         {result && (
           <div className="rounded-md border border-zinc-800 bg-zinc-950 p-3.5 space-y-2.5 animate-fade-in-up">
-            <div className="text-[10px] uppercase tracking-wide text-zinc-500 font-medium">
-              {result.question}
+            <div className="flex items-center justify-between gap-2">
+              <div className="text-[10px] uppercase tracking-wide text-zinc-500 font-medium truncate">
+                {result.question}
+              </div>
+              {SUPPORTS_TTS && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    speaking ? stopSpeaking() : speak(result.answer)
+                  }
+                  className="shrink-0 inline-flex items-center gap-1 text-[10px] uppercase tracking-wide font-mono text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
+                  aria-label={speaking ? "Stop speaking" : "Speak answer"}
+                >
+                  {speaking ? (
+                    <>
+                      <VolumeX className="h-3 w-3" />
+                      stop
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="h-3 w-3 text-accent-400" />
+                      play
+                    </>
+                  )}
+                </button>
+              )}
             </div>
             <p className="text-zinc-100 text-[13px] leading-relaxed">
               {result.answer}
@@ -148,18 +177,6 @@ export function QueryPanel() {
                     {s}
                   </span>
                 ))}
-              </div>
-            )}
-            {audioUrl && (
-              <div className="flex items-center gap-2 pt-1">
-                <Volume2 className="h-3.5 w-3.5 text-zinc-500 shrink-0" />
-                <audio controls src={audioUrl} className="h-7 w-full" />
-              </div>
-            )}
-            {ttsLoading && (
-              <div className="flex items-center gap-1.5 text-[11px] text-zinc-500 font-mono">
-                <Loader2 className="h-3 w-3 animate-spin" />
-                generating voice…
               </div>
             )}
           </div>

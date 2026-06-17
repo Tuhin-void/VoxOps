@@ -119,7 +119,8 @@ def retrieve(question: str, k: int = 3) -> List[Tuple[str, str]]:
 def _get_openai() -> OpenAI:
     global _openai
     if _openai is None:
-        _openai = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+        base_url = os.getenv("OPENAI_BASE_URL") or None
+        _openai = OpenAI(api_key=os.environ["OPENAI_API_KEY"], base_url=base_url)
     return _openai
 
 
@@ -134,7 +135,7 @@ def answer_question(question: str) -> Tuple[str, List[str]]:
         return snippet, sources
 
     client = _get_openai()
-    model = os.getenv("CHAT_MODEL", "gpt-4o-mini")
+    model = os.getenv("CHAT_MODEL", "llama-3.3-70b-versatile")
     prompt = (
         "You are an assistant helping a field technician. "
         "Answer using ONLY the context below. If the answer is not present, say so plainly.\n\n"
