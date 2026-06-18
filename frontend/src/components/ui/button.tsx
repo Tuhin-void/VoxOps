@@ -18,10 +18,10 @@ const buttonVariants = cva(
           "bg-surface text-zinc-300 hover:text-zinc-50 border border-hairline",
       },
       size: {
-        default: "h-9 px-3.5",
+        default: "h-11 px-4",
         sm: "h-8 px-3 text-[12px]",
-        lg: "h-10 px-4 text-sm",
-        icon: "h-9 w-9",
+        lg: "h-12 px-5 text-sm",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {

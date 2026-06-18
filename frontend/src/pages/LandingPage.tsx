@@ -7,10 +7,7 @@ import {
   LayoutDashboard,
   ArrowRight,
   Github,
-  FileText,
   Brain,
-  Volume2,
-  Database,
   ShieldCheck,
 } from "lucide-react";
 
@@ -194,69 +191,124 @@ function HowItWorks() {
 }
 
 function Architecture() {
-  const stack = [
-    { icon: Mic, label: "MediaRecorder", group: "Browser" },
-    { icon: Volume2, label: "Web Speech API", group: "Browser" },
-    { icon: FileText, label: "FastAPI", group: "Backend" },
-    { icon: Database, label: "SQLite", group: "Backend" },
-    { icon: Brain, label: "ChromaDB + MiniLM", group: "RAG" },
-    { icon: Sparkles, label: "Groq Whisper + Llama 3.3", group: "AI" },
-  ];
-
   return (
     <section>
       <SectionEyebrow>Architecture</SectionEyebrow>
       <SectionTitle>One backend, one frontend, one LLM provider.</SectionTitle>
+      <p className="text-sm text-zinc-400 mt-4 max-w-xl leading-relaxed">
+        How a voice prompt travels from a glove-on field tech to a grounded
+        answer — five layers, four hops.
+      </p>
 
-      <div className="surface rounded-3xl p-7 mt-10 overflow-x-auto">
-        <pre className="font-mono text-[11px] text-zinc-400 leading-relaxed whitespace-pre min-w-[640px]">
-{`        ┌─────────────────────────────┐
-        │  Browser (React + Vite)     │
-        │  ─ Landing / Worker / Dash  │
-        │  ─ MediaRecorder + SpeechSynth │
-        └─────────────┬───────────────┘
-                      │  fetch /api/*
-                      ▼
-        ┌─────────────────────────────┐
-        │  FastAPI (Python)           │
-        │  ─ /transcribe  /extract    │
-        │  ─ /query  /inspections     │
-        │  ─ /work-orders  /sync      │
-        │  ─ /dashboard/stats         │
-        └──────┬──────────────┬───────┘
-               │              │
-        ┌──────▼──────┐ ┌─────▼──────────┐
-        │  SQLite     │ │  ChromaDB +    │
-        │  (records)  │ │  MiniLM embeds │
-        └─────────────┘ └─────┬──────────┘
-                              │
-                       knowledge_base/  (3 .txt files)
+      <div className="mt-12 mx-auto max-w-[1200px] flex flex-col items-center">
+        <ArchNode
+          title="Browser"
+          subtitle="React + Vite"
+          detail="MediaRecorder · Web Speech API"
+        />
+        <Connector />
 
-         External: Groq OpenAI-compatible API
-          ─ whisper-large-v3        (audio → text)
-          ─ llama-3.3-70b-versatile (extract + RAG answer)`}
-        </pre>
-      </div>
+        <ArchNode
+          title="FastAPI"
+          subtitle="Python backend"
+          detail="/transcribe · /extract · /query · /work-orders"
+        />
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-6">
-        {stack.map((s) => (
-          <div
-            key={s.label}
-            className="surface rounded-md px-3 py-2.5 flex items-center gap-2"
-          >
-            <s.icon strokeWidth={1.75} className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
-            <div className="min-w-0">
-              <div className="text-[10px] uppercase tracking-wide text-zinc-600">
-                {s.group}
-              </div>
-              <div className="text-[12px] text-zinc-200 font-medium truncate">
-                {s.label}
-              </div>
-            </div>
-          </div>
-        ))}
+        <BranchOut />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
+          <ArchNode title="SQLite" subtitle="Records" />
+          <ArchNode title="ChromaDB" subtitle="MiniLM embeddings" />
+        </div>
+
+        <BranchIn />
+
+        <ArchNode
+          title="Knowledge Base"
+          subtitle="3 plain-text manuals"
+          detail="equipment · maintenance · specs"
+        />
+
+        <Connector />
+
+        <ArchNode
+          title="Groq"
+          subtitle="OpenAI-compatible API"
+          detail="whisper-large-v3 · llama-3.3-70b-versatile"
+          highlight
+        />
       </div>
     </section>
+  );
+}
+
+function ArchNode({
+  title,
+  subtitle,
+  detail,
+  highlight,
+}: {
+  title: string;
+  subtitle?: string;
+  detail?: string;
+  highlight?: boolean;
+}) {
+  return (
+    <div
+      className={`rounded-3xl border bg-zinc-900 px-7 py-5 min-w-[240px] text-center transition-colors ${
+        highlight ? "border-primary/50" : "border-zinc-800"
+      }`}
+    >
+      <div className="font-mono text-sm font-medium text-zinc-100">{title}</div>
+      {subtitle && (
+        <div className="font-mono text-xs text-zinc-500 mt-1">{subtitle}</div>
+      )}
+      {detail && (
+        <div className="font-mono text-[11px] text-zinc-600 mt-2 leading-relaxed">
+          {detail}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Connector() {
+  return <div className="my-3 h-10 w-px bg-primary/60" aria-hidden />;
+}
+
+// Visual fork: one line in, two lines out. Collapses to a plain connector on mobile.
+function BranchOut() {
+  return (
+    <>
+      <div
+        className="relative w-full max-w-2xl h-12 my-3 hidden sm:block"
+        aria-hidden
+      >
+        <span className="absolute left-1/2 top-0 h-6 w-px bg-primary/60 -translate-x-1/2" />
+        <span className="absolute left-1/4 right-1/4 top-6 h-px bg-primary/60" />
+        <span className="absolute left-1/4 top-6 h-6 w-px bg-primary/60 -translate-x-1/2" />
+        <span className="absolute right-1/4 top-6 h-6 w-px bg-primary/60 translate-x-1/2" />
+      </div>
+      <div className="my-3 h-10 w-px bg-primary/60 sm:hidden" aria-hidden />
+    </>
+  );
+}
+
+// Visual merge: two lines in, one line out. Collapses on mobile.
+function BranchIn() {
+  return (
+    <>
+      <div
+        className="relative w-full max-w-2xl h-12 my-3 hidden sm:block"
+        aria-hidden
+      >
+        <span className="absolute left-1/4 top-0 h-6 w-px bg-primary/60 -translate-x-1/2" />
+        <span className="absolute right-1/4 top-0 h-6 w-px bg-primary/60 translate-x-1/2" />
+        <span className="absolute left-1/4 right-1/4 top-6 h-px bg-primary/60" />
+        <span className="absolute left-1/2 top-6 h-6 w-px bg-primary/60 -translate-x-1/2" />
+      </div>
+      <div className="my-3 h-10 w-px bg-primary/60 sm:hidden" aria-hidden />
+    </>
   );
 }
 

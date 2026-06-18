@@ -19,8 +19,8 @@ body {
 }
 
 ::selection {
-  background: #27272a;
-  color: #fafafa;
+  background: #06b6d4;
+  color: #000;
 }
 
 /* Minimal scrollbar */
